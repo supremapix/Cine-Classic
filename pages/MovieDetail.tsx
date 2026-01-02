@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { MOVIES } from '../constants';
 import { ShoppingCart, Check, Tag, ChevronRight, Film, User, Video, Star, Award, Info, Clapperboard, Globe } from 'lucide-react';
@@ -8,6 +8,11 @@ export const MovieDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const movie = MOVIES.find(m => m.id === Number(id));
   const { addToCart } = useCart();
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!movie) {
     return (
@@ -34,13 +39,13 @@ export const MovieDetail: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 pb-16 relative z-20">
         
         {/* Breadcrumb */}
-        <nav className="flex items-center text-xs md:text-sm text-gray-300 mb-8 overflow-x-auto whitespace-nowrap pt-4 font-medium uppercase tracking-wider">
-          <Link to="/" className="hover:text-yellow-400 transition-colors">Acervo</Link>
-          <ChevronRight size={14} className="mx-2 text-gray-500" />
-          <Link to={`/category/${movie.category.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-yellow-400 cursor-pointer transition-colors">
+        <nav className="flex items-center text-xs md:text-sm text-gray-300 mb-8 overflow-x-auto whitespace-nowrap pt-4 font-medium uppercase tracking-wider scrollbar-hide">
+          <Link to="/" className="hover:text-yellow-400 transition-colors flex-shrink-0">Acervo</Link>
+          <ChevronRight size={14} className="mx-2 text-gray-500 flex-shrink-0" />
+          <Link to={`/category/${movie.category.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-yellow-400 cursor-pointer transition-colors flex-shrink-0">
               {movie.category}
           </Link>
-          <ChevronRight size={14} className="mx-2 text-gray-500" />
+          <ChevronRight size={14} className="mx-2 text-gray-500 flex-shrink-0" />
           <span className="text-white font-bold truncate">{movie.title}</span>
         </nav>
 

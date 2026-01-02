@@ -13,7 +13,7 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
 
   return (
     <div className="bg-white border border-gray-200 rounded-sm shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full group relative">
-      <Link to={`/movie/${movie.id}`} className="block relative overflow-hidden aspect-[2/3] bg-gray-100">
+      <Link to={`/movie/${movie.id}`} className="block relative overflow-hidden aspect-[2/3] bg-gray-800">
         <img 
           src={movie.imageUrl} 
           alt={movie.title} 
