@@ -8,6 +8,8 @@ export interface Movie {
   category: string;
   description?: string;
   year?: string;
+  director?: string;
+  cast?: string[];
 }
 
 export interface NavItem {

@@ -20,6 +20,9 @@
             animation: {
               'heartbeat': 'heartbeat 1.5s ease-in-out infinite',
               'cursor': 'cursor .75s step-end infinite',
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'fade-in': 'fadeIn 1s ease-out forwards',
+              'slide-in-right': 'slideInRight 0.5s ease-out forwards',
             },
             keyframes: {
               heartbeat: {
@@ -31,6 +34,18 @@
               cursor: {
                 '0%, 100%': { opacity: '1' },
                 '50%': { opacity: '0' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideInRight: {
+                '0%': { transform: 'translateX(-100%)', opacity: '0' },
+                '100%': { transform: 'translateX(0)', opacity: '1' },
               }
             }
           }
@@ -46,6 +61,20 @@
       }
       h1, h2, h3, .logo-font {
         font-family: 'Oswald', sans-serif;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #2980b9; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #1f618d; 
       }
     </style>
   <script type="importmap">
