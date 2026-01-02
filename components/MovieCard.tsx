@@ -1,6 +1,7 @@
 import React from 'react';
 import { Movie } from '../types';
 import { ShoppingCart, Play } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface Props {
   movie: Movie;
@@ -8,8 +9,8 @@ interface Props {
 
 export const MovieCard: React.FC<Props> = ({ movie }) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-sm shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full group">
-      <div className="relative overflow-hidden aspect-[2/3] bg-gray-100">
+    <div className="bg-white border border-gray-200 rounded-sm shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full group relative">
+      <Link to={`/movie/${movie.id}`} className="block relative overflow-hidden aspect-[2/3] bg-gray-100">
         <img 
           src={movie.imageUrl} 
           alt={movie.title} 
@@ -22,12 +23,14 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
             <Play fill="white" className="text-white ml-1" size={24} />
           </div>
         </div>
-      </div>
+      </Link>
       
       <div className="p-4 flex flex-col flex-grow text-center">
-        <h3 className="text-gray-800 font-bold text-sm md:text-base uppercase mb-1 line-clamp-2 min-h-[40px]">
-          {movie.title}
-        </h3>
+        <Link to={`/movie/${movie.id}`}>
+          <h3 className="text-gray-800 font-bold text-sm md:text-base uppercase mb-1 line-clamp-2 min-h-[40px] hover:text-cine transition-colors">
+            {movie.title}
+          </h3>
+        </Link>
         {movie.originalTitle && (
           <p className="text-gray-500 text-xs italic mb-2">{movie.originalTitle}</p>
         )}

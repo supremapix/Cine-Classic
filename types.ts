@@ -6,6 +6,8 @@ export interface Movie {
   imageUrl: string;
   tags: string[];
   category: string;
+  description?: string;
+  year?: string;
 }
 
 export interface NavItem {
