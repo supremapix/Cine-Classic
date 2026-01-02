@@ -1,6 +1,6 @@
 import React from 'react';
 import { Movie } from '../types';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Play } from 'lucide-react';
 
 interface Props {
   movie: Movie;
@@ -15,7 +15,13 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
           alt={movie.title} 
           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+        
+        {/* Overlay com botão Play */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center cursor-pointer">
+          <div className="w-14 h-14 bg-white/20 backdrop-blur-[2px] rounded-full flex items-center justify-center border-2 border-white/50 opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300 shadow-lg">
+            <Play fill="white" className="text-white ml-1" size={24} />
+          </div>
+        </div>
       </div>
       
       <div className="p-4 flex flex-col flex-grow text-center">

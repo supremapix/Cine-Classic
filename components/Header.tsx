@@ -81,20 +81,22 @@ export const Header: React.FC = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <nav className="bg-cine-nav text-white md:hidden animate-slide-down">
-          <ul className="flex flex-col text-sm font-semibold">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.label} className="border-b border-white/10">
-                <a href={item.href} className="block py-3 px-4 hover:bg-cine-dark">
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
+      {/* Mobile Menu with Smooth Slide Animation */}
+      <nav 
+        className={`bg-cine-nav text-white md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
+          mobileMenuOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <ul className="flex flex-col text-sm font-semibold">
+          {NAV_ITEMS.map((item) => (
+            <li key={item.label} className="border-b border-white/10">
+              <a href={item.href} className="block py-3 px-4 hover:bg-cine-dark">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 };
