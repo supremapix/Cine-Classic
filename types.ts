@@ -10,6 +10,16 @@ export interface Movie {
   year?: string;
   director?: string;
   cast?: string[];
+  // Novos campos detalhados
+  specs?: {
+    type: 'Colorido' | 'Preto e Branco';
+    duration: string;
+    country: string;
+    studio?: string;
+  };
+  qualityRating?: 'Excelente' | 'Boa' | 'Regular';
+  curiosities?: string;
+  importance?: string;
 }
 
 export interface NavItem {
