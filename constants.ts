@@ -1,15 +1,15 @@
 import { Movie, NavItem } from './types';
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'NOVIDADES', href: '#' },
-  { label: 'AVENTURA', href: '#' },
-  { label: 'CLÁSSICO/ÉPICO', href: '#' },
-  { label: 'FAROESTE', href: '#' },
-  { label: 'GUERRA', href: '#' },
-  { label: 'NOIR/POLICIAL/CRIME', href: '#' },
-  { label: 'OUTROS GÊNEROS', href: '#' },
-  { label: 'ATORES', href: '#' },
-  { label: 'DIRETORES', href: '#' },
+  { label: 'NOVIDADES', href: '/category/novidades' },
+  { label: 'AVENTURA', href: '/category/aventura' },
+  { label: 'CLÁSSICO/ÉPICO', href: '/category/classico-epico' },
+  { label: 'FAROESTE', href: '/category/faroeste' },
+  { label: 'GUERRA', href: '/category/guerra' },
+  { label: 'NOIR/POLICIAL/CRIME', href: '/category/noir-policial-crime' },
+  { label: 'OUTROS GÊNEROS', href: '/category/outros' },
+  { label: 'ATORES', href: '/category/atores' },
+  { label: 'DIRETORES', href: '/category/diretores' },
 ];
 
 export const MOVIES: Movie[] = [

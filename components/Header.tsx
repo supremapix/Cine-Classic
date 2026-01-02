@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search, ShoppingCart, User, Menu, Film } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
+import { Link } from 'react-router-dom';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
@@ -10,14 +11,14 @@ export const Header: React.FC = () => {
       {/* Top Bar: Logo and Contact */}
       <div className="bg-cine text-white py-4 px-4 md:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
             <div className="bg-orange-400 text-black font-bold p-1 rounded border-2 border-black">
               <Film size={28} />
             </div>
             <h1 className="text-3xl md:text-4xl font-bold uppercase tracking-tighter logo-font text-black" style={{ textShadow: '1px 1px 0px rgba(255,255,255,0.2)' }}>
               Cine Classic
             </h1>
-          </div>
+          </Link>
           <div className="text-sm opacity-80">
             contato@cineclassic.com.br
           </div>
@@ -69,12 +70,12 @@ export const Header: React.FC = () => {
           <ul className="flex flex-wrap text-xs font-semibold">
             {NAV_ITEMS.map((item) => (
               <li key={item.label}>
-                <a 
-                  href={item.href} 
+                <Link 
+                  to={item.href} 
                   className="block py-3 px-4 hover:bg-cine-dark transition-colors border-r border-white/10"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -90,9 +91,13 @@ export const Header: React.FC = () => {
         <ul className="flex flex-col text-sm font-semibold">
           {NAV_ITEMS.map((item) => (
             <li key={item.label} className="border-b border-white/10">
-              <a href={item.href} className="block py-3 px-4 hover:bg-cine-dark">
+              <Link 
+                to={item.href} 
+                className="block py-3 px-4 hover:bg-cine-dark"
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
