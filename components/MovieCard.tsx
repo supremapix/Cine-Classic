@@ -47,7 +47,7 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
           <p className="text-xl font-bold text-cine mb-3">
             R$ {movie.price.toFixed(2).replace('.', ',')}
           </p>
-          <button className="w-full bg-cine hover:bg-cine-dark text-white font-bold py-2 px-4 rounded-sm transition-colors flex items-center justify-center gap-2 text-sm">
+          <button className="w-full bg-cine hover:bg-cine-dark text-white font-bold py-2 px-4 rounded-sm transition-all duration-200 flex items-center justify-center gap-2 text-sm shadow-sm hover:shadow-md">
             <ShoppingCart size={16} />
             COMPRAR
           </button>
