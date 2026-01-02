@@ -2,12 +2,15 @@ import React from 'react';
 import { Movie } from '../types';
 import { ShoppingCart, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/AppContext';
 
 interface Props {
   movie: Movie;
 }
 
 export const MovieCard: React.FC<Props> = ({ movie }) => {
+  const { addToCart } = useCart();
+
   return (
     <div className="bg-white border border-gray-200 rounded-sm shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full group relative">
       <Link to={`/movie/${movie.id}`} className="block relative overflow-hidden aspect-[2/3] bg-gray-100">
@@ -47,7 +50,10 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
           <p className="text-xl font-bold text-cine mb-3">
             R$ {movie.price.toFixed(2).replace('.', ',')}
           </p>
-          <button className="w-full bg-cine hover:bg-cine-dark text-white font-bold py-2 px-4 rounded-sm transition-all duration-200 flex items-center justify-center gap-2 text-sm shadow-sm hover:shadow-md">
+          <button 
+            onClick={() => addToCart(movie)}
+            className="w-full bg-cine hover:bg-cine-dark text-white font-bold py-2 px-4 rounded-sm transition-all duration-200 flex items-center justify-center gap-2 text-sm shadow-sm hover:shadow-md"
+          >
             <ShoppingCart size={16} />
             COMPRAR
           </button>

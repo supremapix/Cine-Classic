@@ -28,14 +28,13 @@ export const Home: React.FC = () => {
     // Filter by Category (Slug)
     if (slug) {
         if (slug === 'novidades') {
-            // For now, Novidades returns everything or could be a specific boolean flag
-            // result = result; 
+            // Logic for "Novidades": In a real app, sort by date. 
+            // Here we just return everything as "Featured".
+            result = result; 
         } else {
             result = result.filter(movie => {
                 const movieCat = normalize(movie.category);
                 const targetSlug = normalize(slug);
-                // Handle cases like "classico-epico" matching "Classico" or "Epico"
-                // or exact match for "faroeste"
                 return movieCat.includes(targetSlug) || targetSlug.includes(movieCat);
             });
         }

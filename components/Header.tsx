@@ -1,10 +1,13 @@
 import React from 'react';
-import { Search, ShoppingCart, User, Menu, Film } from 'lucide-react';
+import { Search, ShoppingCart, User, Menu, Film, LogIn } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 import { Link } from 'react-router-dom';
+import { useCart, useAuth } from '../context/AppContext';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const { cartCount } = useCart();
+  const { isAuthenticated, user } = useAuth();
 
   return (
     <header className="flex flex-col w-full font-sans">
@@ -53,13 +56,29 @@ export const Header: React.FC = () => {
 
           <div className="flex items-center gap-4 text-white">
             <Search className="md:hidden" />
-            <div className="flex items-center gap-1 cursor-pointer hover:opacity-80">
-              <User size={24} />
-            </div>
-            <div className="flex items-center gap-1 cursor-pointer hover:opacity-80 relative">
+            
+            {/* User Auth Link */}
+            {isAuthenticated ? (
+               <Link to="/profile" className="flex items-center gap-2 cursor-pointer hover:opacity-80" title="Meu Perfil">
+                <User size={24} />
+                <span className="text-xs font-bold hidden md:inline">{user?.name.split(' ')[0]}</span>
+              </Link>
+            ) : (
+              <Link to="/login" className="flex items-center gap-1 cursor-pointer hover:opacity-80" title="Fazer Login">
+                <LogIn size={24} />
+                <span className="text-xs font-bold hidden md:inline">ENTRAR</span>
+              </Link>
+            )}
+
+            {/* Cart Link */}
+            <Link to="/cart" className="flex items-center gap-1 cursor-pointer hover:opacity-80 relative">
               <ShoppingCart size={24} />
-              <span className="absolute -top-2 -right-2 bg-orange-400 text-xs text-black font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
-            </div>
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-orange-400 text-xs text-black font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-sm">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
           </div>
         </div>
       </div>

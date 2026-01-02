@@ -2,10 +2,12 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { MOVIES } from '../constants';
 import { ShoppingCart, Check, Tag, ChevronRight, Film } from 'lucide-react';
+import { useCart } from '../context/AppContext';
 
 export const MovieDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const movie = MOVIES.find(m => m.id === Number(id));
+  const { addToCart } = useCart();
 
   if (!movie) {
     return (
@@ -22,7 +24,9 @@ export const MovieDetail: React.FC = () => {
       <nav className="flex items-center text-sm text-gray-500 mb-8 overflow-x-auto whitespace-nowrap">
         <Link to="/" className="hover:text-cine transition-colors">Home</Link>
         <ChevronRight size={14} className="mx-2" />
-        <span className="hover:text-cine cursor-pointer transition-colors">{movie.category}</span>
+        <Link to={`/category/${movie.category.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-cine cursor-pointer transition-colors">
+            {movie.category}
+        </Link>
         <ChevronRight size={14} className="mx-2" />
         <span className="font-bold text-gray-800 truncate">{movie.title}</span>
       </nav>
@@ -65,7 +69,10 @@ export const MovieDetail: React.FC = () => {
           </div>
 
           {/* Action Button */}
-          <button className="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 mb-8">
+          <button 
+            onClick={() => addToCart(movie)}
+            className="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 mb-8"
+          >
             <ShoppingCart size={20} />
             ADICIONAR AO CARRINHO
           </button>
