@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { Watermark } from './components/Watermark';
 import { Home } from './pages/Home';
 import { MovieDetail } from './pages/MovieDetail';
 import { Login } from './pages/Login';
@@ -13,10 +14,11 @@ const App: React.FC = () => {
   return (
     <AppProvider>
       <Router>
-        <div className="min-h-screen flex flex-col bg-[#f4f6f8]">
+        <div className="min-h-screen flex flex-col bg-[#f4f6f8] relative">
+          <Watermark />
           <Header />
           
-          <main className="flex-grow">
+          <main className="flex-grow relative z-10">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/category/:slug" element={<Home />} />
